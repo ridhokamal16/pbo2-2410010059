@@ -1,0 +1,13 @@
+1. new Koleksi("X01", "Uji", 2026) di main
+Error kompilasi: "Koleksi is abstract; cannot be instantiated". Koleksi adalah abstract class, jadi tidak bisa langsung dibuat objeknya — hanya subclass konkret (Buku, Majalah, Skripsi) yang boleh.
+
+2. hitungDenda → hitungdenda
+
+Dengan @Override: error — "method does not override or implement a method from a supertype", karena Java case-sensitive, hitungdenda ≠ hitungDenda dari interface BisaDipinjam.
+Tanpa @Override: tetap error — "Buku is not abstract and does not override abstract method hitungDenda(int)", karena Buku wajib mengimplementasikan hitungDenda dari interface, dan itu belum terpenuhi.
+
+3. new Buku("B009", "", 2020, "Anonim")
+Kompilasi sukses, tapi saat dijalankan program crash (RuntimeException) dengan pesan "Judul tidak boleh kosong", karena constructor Koleksi memvalidasi judul kosong dengan IllegalArgumentException. Kode setelahnya tidak akan dieksekusi.
+
+4. status diubah jadi public
+Melanggar prinsip enkapsulasi. Jika public, status bisa diubah langsung dari main tanpa lewat method pinjam()/kembalikan(), sehingga aturan bisnis (misalnya validasi status) bisa dilewati dan data jadi tidak konsisten dengan kondisi nyata.
