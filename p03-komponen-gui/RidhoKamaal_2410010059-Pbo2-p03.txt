@@ -1,0 +1,16 @@
+1. Top-Level Container: Wadah utama tempat berdiri aplikasi GUI yang menghubungkan program dengan sistem operasi.   Contoh: JFrame   
+
+   Intermediate Container: Wadah perantara di dalam top-level container yang berfungsi untuk mengelompokkan dan mengatur tata letak (layout) komponen lain.   Contoh: JPanel   
+
+   Atomic Component: Komponen tunggal (seperti tombol atau input teks) yang berinteraksi langsung dengan pengguna dan tidak bisa menampung komponen lain.   Contoh: JButton
+
+2.Agar tombol radio tersebut berada dalam satu kelompok interaksi eksklusif. Dengan begitu, pengguna hanya bisa memilih satu opsi saja. Jika salah satu radio button dipilih, radio button lain di group yang sama otomatis akan batal terpilih (unselected).
+
+3.Gunakan JComboBox jika opsi pilihan sangat banyak (lebih dari 4-5 opsi) agar tampilan antarmuka (GUI) tetap hemat tempat dan tidak berantakan.   
+Gunakan JRadioButton jika opsinya sedikit (2-4 opsi) dan ingin semua pilihan langsung terlihat secara jelas.
+
+4.Alasan tidak boleh diedit: Metode initComponents() dibuat dan dikelola secara otomatis oleh GUI Builder NetBeans. Jika diubah manual, kode tersebut akan tertimpa (overwritten) atau rusak saat tampilan Design diperbarui.   
+
+Tempat penulisan kode tambahan: Tulis kode tambahan di dalam konstruktor kelas (setelah pemanggilan initComponents()) atau di dalam metode event handler/metode kustom buatan sendiri.
+
+5.Agar pengaturan tema (Look and Feel) sudah aktif sebelum elemen GUI diinisialisasi/digambar ke layar. Jika dipanggil setelah form atau komponen dibuat, komponen tersebut akan menggunakan tema standar (default) Swing dan tidak akan langsung berubah warna kecuali diperbarui manual.       
