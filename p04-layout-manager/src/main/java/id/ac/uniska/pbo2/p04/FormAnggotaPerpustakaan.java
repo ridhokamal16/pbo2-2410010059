@@ -6,6 +6,7 @@ package id.ac.uniska.pbo2.p04;
 
 import com.formdev.flatlaf.FlatLightLaf;
 import com.formdev.flatlaf.FlatLaf;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -49,7 +50,7 @@ public class FormAnggotaPerpustakaan extends javax.swing.JFrame {
         BatalButton = new javax.swing.JButton();
         DaftarButton = new javax.swing.JButton();
         IsiPanel = new javax.swing.JPanel();
-        jPanel1 = new javax.swing.JPanel();
+        FormPanel = new javax.swing.JPanel();
         NamaLabel = new javax.swing.JLabel();
         NpmLabel = new javax.swing.JLabel();
         ProdiLabel = new javax.swing.JLabel();
@@ -69,10 +70,16 @@ public class FormAnggotaPerpustakaan extends javax.swing.JFrame {
         UmumRB = new javax.swing.JRadioButton();
         NomorField = new javax.swing.JTextField();
         AlamatScrollPane = new javax.swing.JScrollPane();
-        jTextArea2 = new javax.swing.JTextArea();
+        AlamatField = new javax.swing.JTextArea();
+        labelJumlahDigit = new javax.swing.JLabel();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
         setTitle("Kartu Anggota Perpustakaan");
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowClosing(java.awt.event.WindowEvent evt) {
+                formWindowClosing(evt);
+            }
+        });
 
         HeaderPanel.setBorder(javax.swing.BorderFactory.createEmptyBorder(16, 16, 8, 16));
         HeaderPanel.setLayout(new javax.swing.BoxLayout(HeaderPanel, javax.swing.BoxLayout.Y_AXIS));
@@ -87,37 +94,22 @@ public class FormAnggotaPerpustakaan extends javax.swing.JFrame {
         getContentPane().add(HeaderPanel, java.awt.BorderLayout.PAGE_START);
 
         TombolPanel.setBorder(javax.swing.BorderFactory.createEmptyBorder(8, 16, 16, 16));
+        TombolPanel.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.RIGHT, 8, 0));
 
         BatalButton.setText("Batal");
+        BatalButton.addActionListener(this::BatalButtonActionPerformed);
+        TombolPanel.add(BatalButton);
 
         DaftarButton.setText("Daftar");
-
-        javax.swing.GroupLayout TombolPanelLayout = new javax.swing.GroupLayout(TombolPanel);
-        TombolPanel.setLayout(TombolPanelLayout);
-        TombolPanelLayout.setHorizontalGroup(
-            TombolPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, TombolPanelLayout.createSequentialGroup()
-                .addContainerGap(603, Short.MAX_VALUE)
-                .addComponent(BatalButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(DaftarButton)
-                .addGap(29, 29, 29))
-        );
-        TombolPanelLayout.setVerticalGroup(
-            TombolPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(TombolPanelLayout.createSequentialGroup()
-                .addGap(27, 27, 27)
-                .addGroup(TombolPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(BatalButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(DaftarButton))
-                .addContainerGap(50, Short.MAX_VALUE))
-        );
+        DaftarButton.setEnabled(false);
+        DaftarButton.addActionListener(this::DaftarButtonActionPerformed);
+        TombolPanel.add(DaftarButton);
 
         getContentPane().add(TombolPanel, java.awt.BorderLayout.PAGE_END);
 
         IsiPanel.setLayout(new java.awt.BorderLayout());
 
-        jPanel1.setLayout(new java.awt.GridBagLayout());
+        FormPanel.setLayout(new java.awt.GridBagLayout());
 
         NamaLabel.setText("Nama Lengkap");
         gridBagConstraints = new java.awt.GridBagConstraints();
@@ -125,7 +117,7 @@ public class FormAnggotaPerpustakaan extends javax.swing.JFrame {
         gridBagConstraints.gridy = 1;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
         gridBagConstraints.insets = new java.awt.Insets(6, 0, 6, 12);
-        jPanel1.add(NamaLabel, gridBagConstraints);
+        FormPanel.add(NamaLabel, gridBagConstraints);
 
         NpmLabel.setText("NPM");
         gridBagConstraints = new java.awt.GridBagConstraints();
@@ -133,7 +125,7 @@ public class FormAnggotaPerpustakaan extends javax.swing.JFrame {
         gridBagConstraints.gridy = 2;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
         gridBagConstraints.insets = new java.awt.Insets(6, 0, 6, 12);
-        jPanel1.add(NpmLabel, gridBagConstraints);
+        FormPanel.add(NpmLabel, gridBagConstraints);
 
         ProdiLabel.setText("Prodi");
         gridBagConstraints = new java.awt.GridBagConstraints();
@@ -141,7 +133,7 @@ public class FormAnggotaPerpustakaan extends javax.swing.JFrame {
         gridBagConstraints.gridy = 3;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
         gridBagConstraints.insets = new java.awt.Insets(6, 0, 6, 12);
-        jPanel1.add(ProdiLabel, gridBagConstraints);
+        FormPanel.add(ProdiLabel, gridBagConstraints);
 
         JenisLabel.setText("Jenis Anggota");
         gridBagConstraints = new java.awt.GridBagConstraints();
@@ -149,7 +141,7 @@ public class FormAnggotaPerpustakaan extends javax.swing.JFrame {
         gridBagConstraints.gridy = 4;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
         gridBagConstraints.insets = new java.awt.Insets(6, 0, 6, 12);
-        jPanel1.add(JenisLabel, gridBagConstraints);
+        FormPanel.add(JenisLabel, gridBagConstraints);
 
         KontakLabel.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         KontakLabel.setText("Kontak");
@@ -158,7 +150,7 @@ public class FormAnggotaPerpustakaan extends javax.swing.JFrame {
         gridBagConstraints.gridy = 5;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
         gridBagConstraints.insets = new java.awt.Insets(6, 0, 6, 12);
-        jPanel1.add(KontakLabel, gridBagConstraints);
+        FormPanel.add(KontakLabel, gridBagConstraints);
 
         EmailLabel.setText("Email");
         gridBagConstraints = new java.awt.GridBagConstraints();
@@ -166,7 +158,7 @@ public class FormAnggotaPerpustakaan extends javax.swing.JFrame {
         gridBagConstraints.gridy = 6;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
         gridBagConstraints.insets = new java.awt.Insets(6, 0, 6, 12);
-        jPanel1.add(EmailLabel, gridBagConstraints);
+        FormPanel.add(EmailLabel, gridBagConstraints);
 
         NomorLabel.setText("Nomor HP");
         gridBagConstraints = new java.awt.GridBagConstraints();
@@ -174,7 +166,7 @@ public class FormAnggotaPerpustakaan extends javax.swing.JFrame {
         gridBagConstraints.gridy = 7;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
         gridBagConstraints.insets = new java.awt.Insets(6, 0, 6, 12);
-        jPanel1.add(NomorLabel, gridBagConstraints);
+        FormPanel.add(NomorLabel, gridBagConstraints);
 
         AlamatLabel.setText("Alamat");
         gridBagConstraints = new java.awt.GridBagConstraints();
@@ -182,44 +174,51 @@ public class FormAnggotaPerpustakaan extends javax.swing.JFrame {
         gridBagConstraints.gridy = 8;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
         gridBagConstraints.insets = new java.awt.Insets(6, 0, 6, 12);
-        jPanel1.add(AlamatLabel, gridBagConstraints);
+        FormPanel.add(AlamatLabel, gridBagConstraints);
 
         DataLabel.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         DataLabel.setText("Data Anggota");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
         gridBagConstraints.insets = new java.awt.Insets(6, 0, 6, 12);
-        jPanel1.add(DataLabel, gridBagConstraints);
+        FormPanel.add(DataLabel, gridBagConstraints);
 
         PersetujuanCB.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         PersetujuanCB.setText("Saya Setuju dengan tata tertib perpustakaan");
+        PersetujuanCB.addItemListener(this::PersetujuanCBItemStateChanged);
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 9;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
         gridBagConstraints.insets = new java.awt.Insets(6, 0, 6, 12);
-        jPanel1.add(PersetujuanCB, gridBagConstraints);
+        FormPanel.add(PersetujuanCB, gridBagConstraints);
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 1;
         gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
         gridBagConstraints.weightx = 1.0;
         gridBagConstraints.insets = new java.awt.Insets(0, 0, 6, 0);
-        jPanel1.add(NamaField, gridBagConstraints);
+        FormPanel.add(NamaField, gridBagConstraints);
+
+        NpmField.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                NpmFieldKeyReleased(evt);
+            }
+        });
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 2;
         gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
         gridBagConstraints.weightx = 1.0;
         gridBagConstraints.insets = new java.awt.Insets(0, 0, 6, 0);
-        jPanel1.add(NpmField, gridBagConstraints);
+        FormPanel.add(NpmField, gridBagConstraints);
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 6;
         gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
         gridBagConstraints.weightx = 1.0;
         gridBagConstraints.insets = new java.awt.Insets(0, 0, 6, 0);
-        jPanel1.add(EmailField, gridBagConstraints);
+        FormPanel.add(EmailField, gridBagConstraints);
 
         ProdiCB.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Teknik Informatika", "Sistem Informasi", " " }));
         gridBagConstraints = new java.awt.GridBagConstraints();
@@ -228,7 +227,7 @@ public class FormAnggotaPerpustakaan extends javax.swing.JFrame {
         gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
         gridBagConstraints.weightx = 1.0;
         gridBagConstraints.insets = new java.awt.Insets(0, 0, 6, 0);
-        jPanel1.add(ProdiCB, gridBagConstraints);
+        FormPanel.add(ProdiCB, gridBagConstraints);
 
         JenisButtonGroup.add(MahasiswaRB);
         MahasiswaRB.setText("Mahasiswa");
@@ -238,7 +237,7 @@ public class FormAnggotaPerpustakaan extends javax.swing.JFrame {
         gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
         gridBagConstraints.weightx = 1.0;
         gridBagConstraints.insets = new java.awt.Insets(0, 0, 6, 0);
-        jPanel1.add(MahasiswaRB, gridBagConstraints);
+        FormPanel.add(MahasiswaRB, gridBagConstraints);
 
         JenisButtonGroup.add(DosenRB);
         DosenRB.setText("Dosen");
@@ -248,7 +247,7 @@ public class FormAnggotaPerpustakaan extends javax.swing.JFrame {
         gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
         gridBagConstraints.weightx = 1.0;
         gridBagConstraints.insets = new java.awt.Insets(0, 0, 6, 0);
-        jPanel1.add(DosenRB, gridBagConstraints);
+        FormPanel.add(DosenRB, gridBagConstraints);
 
         JenisButtonGroup.add(UmumRB);
         UmumRB.setText("Umum");
@@ -259,27 +258,35 @@ public class FormAnggotaPerpustakaan extends javax.swing.JFrame {
         gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
         gridBagConstraints.weightx = 1.0;
         gridBagConstraints.insets = new java.awt.Insets(0, 0, 6, 0);
-        jPanel1.add(UmumRB, gridBagConstraints);
+        FormPanel.add(UmumRB, gridBagConstraints);
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 7;
         gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
         gridBagConstraints.weightx = 1.0;
         gridBagConstraints.insets = new java.awt.Insets(0, 0, 6, 0);
-        jPanel1.add(NomorField, gridBagConstraints);
+        FormPanel.add(NomorField, gridBagConstraints);
 
-        jTextArea2.setColumns(20);
-        jTextArea2.setRows(5);
-        AlamatScrollPane.setViewportView(jTextArea2);
+        AlamatField.setColumns(20);
+        AlamatField.setLineWrap(true);
+        AlamatField.setRows(5);
+        AlamatField.setWrapStyleWord(true);
+        AlamatScrollPane.setViewportView(AlamatField);
 
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 8;
         gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
         gridBagConstraints.weightx = 1.0;
-        jPanel1.add(AlamatScrollPane, gridBagConstraints);
+        FormPanel.add(AlamatScrollPane, gridBagConstraints);
 
-        IsiPanel.add(jPanel1, java.awt.BorderLayout.CENTER);
+        labelJumlahDigit.setText("0 Dari 10 Digit");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 2;
+        gridBagConstraints.gridy = 2;
+        FormPanel.add(labelJumlahDigit, gridBagConstraints);
+
+        IsiPanel.add(FormPanel, java.awt.BorderLayout.CENTER);
 
         getContentPane().add(IsiPanel, java.awt.BorderLayout.CENTER);
 
@@ -290,6 +297,91 @@ public class FormAnggotaPerpustakaan extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_UmumRBActionPerformed
 
+    private void PersetujuanCBItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_PersetujuanCBItemStateChanged
+    DaftarButton.setEnabled(PersetujuanCB.isSelected());
+    }//GEN-LAST:event_PersetujuanCBItemStateChanged
+
+    private void BatalButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BatalButtonActionPerformed
+    // Mengosongkan semua komponen Text Field dan Text Area
+    NamaField.setText("");
+    NpmField.setText("");
+    EmailField.setText("");
+    NomorField.setText("");
+    AlamatField.setText("");
+    
+    // Mengembalikan pilihan ComboBox ke indeks pertama (default)
+    if (ProdiCB.getItemCount() > 0) {
+        ProdiCB.setSelectedIndex(0);
+    }
+    
+    // Menghapus pilihan pada Radio Button (jika menggunakan ButtonGroup, Anda bisa clear selection atau set default)
+    JenisButtonGroup.clearSelection(); // Sesuaikan nama ButtonGroup jika ada, atau biarkan jika tidak dipakai
+    
+    // Menghilangkan centang pada checkbox persetujuan dan menonaktifkan tombol daftar
+    PersetujuanCB.setSelected(false);
+    DaftarButton.setEnabled(false);
+    
+    // Mengembalikan fokus/kursor ke field Nama Lengkap
+    NamaField.requestFocus();
+    }//GEN-LAST:event_BatalButtonActionPerformed
+
+    private void DaftarButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_DaftarButtonActionPerformed
+    // Mengambil nilai dari setiap komponen form
+    String nama = NamaField.getText(); // Sesuaikan dengan nama variabel TextField Nama di Navigator Anda
+    String npm = NpmField.getText();
+    String prodi = ProdiCB.getSelectedItem().toString();
+    
+    // Mengecek pilihan RadioButton Jenis Anggota
+    String jenisAnggota = "";
+    if (MahasiswaRB.isSelected()) {
+        jenisAnggota = "Mahasiswa";
+    } else if (DosenRB.isSelected()) {
+        jenisAnggota = "Dosen";
+    } else if (UmumRB.isSelected()) {
+        jenisAnggota = "Umum";
+    }
+    
+    String email = EmailField.getText();
+    String nomorHP = NomorField.getText();
+    String alamat = AlamatField.getText(); // Sesuaikan jika menggunakan JTextArea/TextField untuk alamat
+    
+    // Menyusun ringkasan seluruh data
+    String ringkasan = "=== RINGKASAN DATA PENDAFTARAN ===\n" +
+                       "Nama Lengkap  : " + nama + "\n" +
+                       "NPM           : " + npm + "\n" +
+                       "Program Studi : " + prodi + "\n" +
+                       "Jenis Anggota : " + jenisAnggota + "\n" +
+                       "Email         : " + email + "\n" +
+                       "Nomor HP      : " + nomorHP + "\n" +
+                       "Alamat        : " + alamat + "\n\n" +
+                       "Status        : Pendaftaran Berhasil!";
+                       
+    // Menampilkan data dalam JOptionPane
+    javax.swing.JOptionPane.showMessageDialog(
+        this, 
+        ringkasan, 
+        "Ringkasan Data Pendaftaran", 
+        javax.swing.JOptionPane.INFORMATION_MESSAGE
+    );
+    }//GEN-LAST:event_DaftarButtonActionPerformed
+
+    private void NpmFieldKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_NpmFieldKeyReleased
+    int jumlahDigit = NpmField.getText().length();
+    labelJumlahDigit.setText(jumlahDigit + " dari 10 digit");
+    }//GEN-LAST:event_NpmFieldKeyReleased
+
+    private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
+        int jawab = JOptionPane.showConfirmDialog(this,
+    "Keluar dari aplikasi?", "Konfirmasi", JOptionPane.YES_NO_OPTION);
+    if (jawab == JOptionPane.YES_OPTION) {
+    dispose();
+    }
+    }//GEN-LAST:event_formWindowClosing
+
+    private void setujuCheckItemStateChanged(java.awt.event.ItemEvent evt) {
+    DaftarButton.setEnabled(PersetujuanCB.isSelected());
+    }
+    
     /**
      * @param args the command line arguments
      */
@@ -302,6 +394,7 @@ public class FormAnggotaPerpustakaan extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JTextArea AlamatField;
     private javax.swing.JLabel AlamatLabel;
     private javax.swing.JScrollPane AlamatScrollPane;
     private javax.swing.JButton BatalButton;
@@ -310,6 +403,7 @@ public class FormAnggotaPerpustakaan extends javax.swing.JFrame {
     private javax.swing.JRadioButton DosenRB;
     private javax.swing.JTextField EmailField;
     private javax.swing.JLabel EmailLabel;
+    private javax.swing.JPanel FormPanel;
     private javax.swing.JPanel HeaderPanel;
     private javax.swing.JPanel IsiPanel;
     private javax.swing.ButtonGroup JenisButtonGroup;
@@ -329,7 +423,6 @@ public class FormAnggotaPerpustakaan extends javax.swing.JFrame {
     private javax.swing.JLabel ProdiLabel;
     private javax.swing.JPanel TombolPanel;
     private javax.swing.JRadioButton UmumRB;
-    private javax.swing.JPanel jPanel1;
-    private javax.swing.JTextArea jTextArea2;
+    private javax.swing.JLabel labelJumlahDigit;
     // End of variables declaration//GEN-END:variables
 }
