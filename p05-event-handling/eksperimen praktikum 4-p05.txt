@@ -1,0 +1,14 @@
+Pertanyaan 1:
+Berapa kali pesan tercetak? 
+Tercetak 2 kali.   
+Alasan: Karena ada dua event handler yang aktif secara bersamaan (ekspresi lambda di konstruktor dan method actionPerformed dari menu Events), sehingga keduanya sama-sama menjalankan perintah saat tombol diklik.
+Mengapa satu tombol sebaiknya hanya memakai satu cara? 
+Agar kode lebih bersih, terhindar dari duplikasi eksekusi aksi, dan tidak membingungkan saat proses debugging.
+
+Pertanyaan 2:
+Tab Design: Menambahkan komponen tombol baru (Button) ke dalam form, mengubah teks atau labelnya menjadi %, serta mengatur nama variabelnya (misal: modButton).
+Tab Source: Menambahkan kode event handler atau fungsi logika perhitungan matematika yang menggunakan operator modulus (%) untuk menghitung sisa bagi.
+
+Pertanyaan 3:
+Mengapa kursor langsung berada di isian pertama? 
+Karena pada baris kode tombol Hapus terdapat perintah pemfokusan (seperti .requestFocus()) yang sengaja diarahkan ke kolom isian pertama agar pengguna bisa langsung mengetik kembali tanpa harus mengklik kolom tersebut secara manual.

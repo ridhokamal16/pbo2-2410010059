@@ -1,0 +1,10 @@
+1.Berapa kali pesan tercetak setiap pilihan diganti?
+Tercetak 2 kali.   
+Alasan: Karena setiap pergantian pilihan melibatkan dua status perubahan, yaitu item lama yang dilepas (deselected) dan item baru yang dipilih (selected).
+
+2.Mengapa hasil yang tampil terlambat satu karakter?
+Karena event keyPressed merespons saat tombol mulai ditekan, sebelum karakter tersebut benar-benar dimasukkan ke dalam komponen teks. Akibatnya, fungsi konversi() membaca nilai teks sebelum karakter terakhir sempat terbaca.
+
+3.Apa yang muncul di jendela Output jika blok try-catch dihapus dan diketik huruf?
+Muncul pesan error berupa NumberFormatException.   
+Alasan: Program gagal mengonversi input huruf/teks biasa menjadi tipe data angka (seperti double atau int), sehingga terjadi kesalahan (exception) yang menghentikan proses konversi.
