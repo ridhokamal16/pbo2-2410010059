@@ -156,9 +156,13 @@ Saya Menggunakan Ai untuk :
 [eksperimen praktikum 4-p06.txt](https://github.com/user-attachments/files/34239147/eksperimen.praktikum.4-p06.txt)
 
 
-[Deklarasi AI.txt](https://github.com/user-attachments/files/34239161/Deklarasi.AI.txt)
 # Deklarasi penggunaan AI: alat yang dipakai dan untuk keperluan apa, atau pernyataan tidak memakai AI:
 Saya menggunakan AI untuk:
 -Membuat code untuk file Readme
 -Menjawab Eksperimen 4
 -untuk mengecek apakah tugas sudah sesuai dengan kriteria penilaian
+[Deklarasi.AI p06.txt](https://github.com/user-attachments/files/34239188/Deklarasi.AI.p06.txt)
+
+
+# p07-tabel-dan-menu
+
