@@ -1,3 +1,4 @@
+[eksperimen praktikum 5-p07.txt](https://github.com/user-attachments/files/34239431/eksperimen.praktikum.5-p07.txt)
 # pbo2-2410010059
 
 # p04-layout-manager
@@ -166,7 +167,29 @@ Saya menggunakan AI untuk:
 
 # p07-tabel-dan-menu
 # jawaban eksperimen Praktikum 5:
+1. Di KontakTableModel, jadikan baris fireTableRowsInserted sebagai komentar, lalu tambah kontak baru. Apakah tabel langsung berubah?
+Jawaban: Tidak. Tabel tidak langsung memperbarui tampilannya karena fungsi pemberitahuan perubahan data (fireTableRowsInserted) dinonaktifkan.   
+
+2. Di method barisTerpilih, ganti isinya menjadi return KontakTable.getSelectedRow();. Cari kata "ah", pilih Ahmad Fauzi, lalu klik Hapus dan pilih No. Nama siapa yang muncul di dialog konfirmasi?
+Jawaban: Nama baris yang salah atau tidak sesuai, karena getSelectedRow() mengambil indeks tampilan yang terfilter, bukan indeks model data aslinya.   
+
+3. Di konstruktor DialogKontak, ubah parameter true menjadi false. Saat dialog terbuka, coba klik jendela utama. Apa yang terjadi?
+Jawaban: Dialog menjadi non-modal, sehingga jendela utama dapat diklik dan diakses kembali meskipun dialog masih terbuka.   
+
+4. Tekan Ctrl+N, Ctrl+E, dan Ctrl+D. Mengapa Ctrl+E dan Ctrl+D tidak bekerja saat tidak ada baris yang dipilih?Jawaban: Karena aksi Edit dan Delete memerlukan baris data tertentu pada tabel untuk dipilih terlebih dahulu sebelum bisa diproses.   
+
+5. Di tab Design, ubah accelerator hapusttem menjadi tombol Delete tanpa Ctrl. Baris apa yang berubah di initComponents()?
+Jawaban: Baris kode pengaturan accelerator (pintas tombol) pada menu item tersebut, yang mengubah kombinasi tombol dari menggunakan CTRL_MASK menjadi tombol DELETE tunggal.   
+
+6. Ubah deklarasi atribut menjadi private KontakTableModel model; lalu isi model = new KontakTableModel(); setelah initComponents(). Pesan error apa yang muncul dan mengapa?
+Jawaban: Muncul error karena pembuatan objek model baru setelah initComponents() membuat tabel kehilangan sinkronisasi atau tidak terhubung dengan model komponen GUI yang sebenarnya. 
+[eksperimen praktikum 5-p07.txt](https://github.com/user-attachments/files/34239468/eksperimen.praktikum.5-p07.txt)
+
 
 # Tautan video demo mini proyek Katalog Buku Perpustakaan (maksimal 3 menit) yang memperlihatkan semua fitur pada tabel bagian D, termasuk sekilas tab Design dan jendela Navigator;
 
-# Deklarasi penggunaan AI: alat yang dipakai dan untuk keperluan apa, atau pernyataan tidak memakai AI.
+# Deklarasi penggunaan AI: alat yang dipakai dan untuk keperluan apa, atau pernyataan tidak memakai AI:[deklrasi AI p07.txt](https://github.com/user-attachments/files/34239460/deklrasi.AI.p07.txt)
+deklrasi AI :
+1.memperbaiki code yang error
+2.mengecek apakah sudah sesuai kriteria di modul
+3.menjawab eksperimen 5
