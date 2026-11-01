@@ -1,4 +1,3 @@
-[eksperimen praktikum 5-p07.txt](https://github.com/user-attachments/files/34239431/eksperimen.praktikum.5-p07.txt)
 # pbo2-2410010059
 
 # p04-layout-manager
@@ -184,6 +183,7 @@ Jawaban: Baris kode pengaturan accelerator (pintas tombol) pada menu item terseb
 6. Ubah deklarasi atribut menjadi private KontakTableModel model; lalu isi model = new KontakTableModel(); setelah initComponents(). Pesan error apa yang muncul dan mengapa?
 Jawaban: Muncul error karena pembuatan objek model baru setelah initComponents() membuat tabel kehilangan sinkronisasi atau tidak terhubung dengan model komponen GUI yang sebenarnya. 
 [eksperimen praktikum 5-p07.txt](https://github.com/user-attachments/files/34239468/eksperimen.praktikum.5-p07.txt)
+
 
 
 # Tautan video demo mini proyek Katalog Buku Perpustakaan (maksimal 3 menit) yang memperlihatkan semua fitur pada tabel bagian D, termasuk sekilas tab Design dan jendela Navigator;
